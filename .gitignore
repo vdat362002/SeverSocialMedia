@@ -6,5 +6,5 @@ frontend/.env.production
 frontend/.env
 frontend/.eslintcache
 server/build
-server/uploads
+server/node_modules
 yarn-error.log
