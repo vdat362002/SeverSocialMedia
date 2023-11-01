@@ -7,4 +7,5 @@ export { default as Profile } from './profile';
 export * from './redirects';
 export { default as Register } from './register';
 export { default as Search } from './search';
+export {default as Watch } from "./watch"
 export { default as SuggestedPeople } from './suggested_people';

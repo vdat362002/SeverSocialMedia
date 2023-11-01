@@ -34,6 +34,7 @@ export const getNewsFeed = (user, query, skip, limit) => {
                         privacy: '$post.privacy',
                         photos: '$post.photos',
                         description: '$post.description',
+                        type_post: '$post.type_post',
                         isEdited: '$post.isEdited',
                         _author_id: '$post._author_id',
                         createdAt: '$post.createdAt',
@@ -122,7 +123,8 @@ export const getNewsFeed = (user, query, skip, limit) => {
                         isOwnPost: 1,
                         isBookmarked: 1,
                         commentsCount: { $size: '$comments' },
-                        likesCount: { $size: '$likes' }
+                        likesCount: { $size: '$likes' },
+                        type_post: 1
                     }
                 }
             ]);

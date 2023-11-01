@@ -1,3 +1,4 @@
+import { HomeOutlined, VideoCameraOutlined } from "@ant-design/icons";
 import { lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
@@ -55,6 +56,14 @@ const NavBar: React.FC<IProps> = ({ isAuth, theme }) => {
             </Link>
             {/* -------- SEARCH BAR ------- */}
             <SearchInput />
+          </div>
+          <div className="flex items-center space-x-8">
+            <NavLink title="Home" to="/">
+              <HomeOutlined />
+            </NavLink>
+            <NavLink title="Watch" to="/watch">
+              <VideoCameraOutlined />
+            </NavLink>
           </div>
           <div className="hidden laptop:flex laptop:items-center space-x-2">
             {isAuth ? (

@@ -18,6 +18,10 @@ const PostSchema = new Schema({
         enum: ['private', 'public', 'follower']
     },
     photos: [Object],
+    type_post: {
+        type: String,
+        default: ""
+    },
     description: {
         type: String,
         default: ''

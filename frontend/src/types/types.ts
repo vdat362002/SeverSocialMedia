@@ -56,6 +56,7 @@ export interface IPost {
     isOwnPost: boolean;
     createdAt: Date;
     updatedAt: Date;
+    type_post?: string;
 }
 
 export interface IHelperState {
@@ -207,4 +208,5 @@ export interface IFileHandler<T> {
     onFileChange: (event: React.ChangeEvent<HTMLInputElement>, callback?: (file?: IImage) => void) => void;
     removeImage: (id: string) => void;
     clearFiles: () => void;
+    isPostVideo?: boolean;
 }

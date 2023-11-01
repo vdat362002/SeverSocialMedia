@@ -5,6 +5,7 @@ import { IFileHandler, IImage } from '~/types/types';
 const useFileHandler = <T extends unknown>(type = "multiple", initState: T): IFileHandler<T> => {
     const [imageFile, setImageFile] = useState<T>(initState);
     const [isFileLoading, setFileLoading] = useState(false);
+    const [isPostVideo, setIsPostVideo]= useState(false)
 
     const removeImage = (id: string) => {
         if (!Array.isArray(imageFile)) return;
@@ -32,14 +33,20 @@ const useFileHandler = <T extends unknown>(type = "multiple", initState: T): IFi
         if (!img) return;
 
         const size = img.size / 1024 / 1024;
-        const regex = /(\.jpg|\.jpeg|\.png)$/i;
-
+        const regex = /(\.mp4|\.jpg|\.jpeg|\.png)$/i;
+        const regexVideo= /\.mp4/i
         setFileLoading(true);
+        if(regexVideo.exec(val)) {
+            setIsPostVideo(true)
+        }
+        else {
+            setIsPostVideo(false)
+        }
         if (!regex.exec(val)) {
-            toast.error('File type must be JPEG or PNG', { hideProgressBar: true });
+            toast.error('File type must be JPEG or PNG or MP4', { hideProgressBar: true });
             setFileLoading(false);
-        } else if (size > 2) {
-            toast.error('File size exceeded 2mb', { hideProgressBar: true });
+        } else if (size > 25) {
+            toast.error('File size exceeded 25mb', { hideProgressBar: true });
             setFileLoading(false);
         } else if (type === 'single') {
             const file = event.target.files[0] as File;
@@ -70,7 +77,8 @@ const useFileHandler = <T extends unknown>(type = "multiple", initState: T): IFi
         isFileLoading,
         onFileChange,
         removeImage,
-        clearFiles
+        clearFiles,
+        isPostVideo
     };
 };
 

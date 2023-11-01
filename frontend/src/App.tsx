@@ -12,6 +12,7 @@ import { ProtectedRoute, PublicRoute } from "~/routers";
 import { loginSuccess } from "./redux/action/authActions";
 import { checkAuthSession } from "./services/api";
 import socket from './socket/socket';
+import Chatbot from './components/main/ChatBot/ChatBot';
 
 export const history = createBrowserHistory();
 
@@ -64,6 +65,7 @@ function App() {
           <PublicRoute path={ROUTE.LOGIN} component={pages.Login} />
           <ProtectedRoute path={ROUTE.SEARCH} component={pages.Search} />
           <Route path={ROUTE.HOME} exact render={(props: any) => <pages.Home key={Date.now()} {...props} />} />
+          <Route path={ROUTE.WATCH} exact render={(props: any)=> <pages.Watch key={Date.now()} {...props} /> } />
           <ProtectedRoute path={ROUTE.POST} component={pages.Post} />
           <ProtectedRoute path={ROUTE.PROFILE} component={pages.Profile} />
           <ProtectedRoute path={ROUTE.CHAT} component={pages.Chat} />
@@ -72,6 +74,7 @@ function App() {
           <Route component={pages.PageNotFound} />
         </Switch>
         {isNotMobile && <Chats />}
+        <Chatbot />
       </main>
     </Router>
   );

@@ -46,7 +46,8 @@ export const schemas = {
     createPostSchema: Joi.object({
         description: Joi.string().allow(''),
         photos: Joi.array().items(Joi.string()),
-        privacy: Joi.string().allow('')
+        privacy: Joi.string().allow(''),
+        type_post: Joi.string().allow('')
     }),
 
     commentSchema: Joi.object({

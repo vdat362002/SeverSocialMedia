@@ -14,3 +14,8 @@
     fill: #2e89ff;
     
 }
+
+figure { overflow:hidden; border-radius:90px; background:white; }
+
+figure img { width:50px; transition:.2s ease; }
+figure img:hover { transform:scale(1.5); cursor:pointer; }

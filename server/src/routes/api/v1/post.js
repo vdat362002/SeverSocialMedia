@@ -19,7 +19,7 @@ router.post(
     validateBody(schemas.createPostSchema),
     async (req, res, next) => {
         try {
-            const { description, privacy } = req.body;
+            const { description, privacy, type_post } = req.body;
 
             let photos = [];
             if (req.files) {
@@ -35,6 +35,7 @@ router.post(
                 description: filterWords.clean(description),
                 photos,
                 privacy: privacy || 'public',
+                type_post: type_post || "",
                 createdAt: Date.now()
             });
 
