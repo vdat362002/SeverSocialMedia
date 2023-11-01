@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "serve": "nodemon src/app.js",
+    "server": "nodemon src/app.js",
     "start": "nodemon src/app.js"
   },
   "dependencies": {
