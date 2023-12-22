@@ -6,6 +6,10 @@ const LikeSchema = new Schema({
         required: true,
         enum: ['Post', 'Comment']
     },
+    kind_react: {
+        type: String,
+        required: false,
+    },
     target: {
         type: Schema.Types.ObjectId,
         refPath: 'type',

@@ -52,6 +52,18 @@ const UserSchema = new Schema({
             message: 'Username Must preceed with letters followed by _ or numbers eg: john23 | john_23'
         }
     },
+    active: {
+        type: Boolean,
+        default: false
+    },
+    last_active: {
+        type: String,
+        default: new Date().toString()
+    },
+    id_temporary: {
+        type: String,
+        default: null
+    },
     provider: {
         type: String,
         default: 'password',

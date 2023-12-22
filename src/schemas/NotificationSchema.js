@@ -15,6 +15,11 @@ const NotificationSchema = new Schema({
         type: String,
         required: true,
         enum: ['follow', 'like', 'comment-like', 'comment', 'reply'],
+        
+    },
+    react: {
+        type: String,
+        required: false,
     },
     initiator: {
         type: Schema.Types.ObjectId,

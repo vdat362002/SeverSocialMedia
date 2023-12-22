@@ -19,9 +19,11 @@ export default function (app, server) {
         socket.on("userConnect", async (id) => {
             try {
                 const user = await User.findById(id);
+                await User.updateOne({_id: id}, {$set: {active: true, last_active: new Date().toString(), id_temporary: socket.id}})
                 if (user) {
                     socket.join(user._id.toString());
                     console.log('Client connected.');
+                    console.log("Có người vừa kết nối", socket.id)
                 }
             } catch (error) {
                 console.error('Invalid user ID, cannot join Socket.');
@@ -41,7 +43,20 @@ export default function (app, server) {
             io.to(user.id).emit("typing", state);
         });
 
-        socket.on("disconnect", () => {
+        socket.on("userOnline", async (data)=> {
+            console.log("user online 123")
+            await User.updateOne({_id: data.userId}, {$set: {active: true, last_active: new Date().toString(), id_temporary: socket.id}})
+        })
+
+        socket.on("updateStatus", async (data)=> {
+            console.log(data)
+            console.log("updateStatus")
+        })
+
+        socket.on("disconnect", async () => {
+            // const user = await User.findOne({id_temporary: socket.id});
+            await User.updateOne({id_temporary: socket.id}, {$set: {active: false, last_active: new Date().toString()}})
+            io.emit('userStatus', { userId: socket.id, status: 'offline' });
             console.log('Client disconnected');
         });
     });

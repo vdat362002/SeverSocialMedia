@@ -36,7 +36,6 @@ router.get(
         } catch (e) {
             console.log(e);
             return res.status(404).json({data: [], status_code: 404, error: {message: "No more notification"}, success: true, time_stamp: new Date(), message: "No more feed"})
-
             next(e);
         }
     }

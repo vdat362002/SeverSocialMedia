@@ -42,7 +42,9 @@ export const getFollow = (
                         username: '$user.username',
                         email: '$user.email',
                         profilePicture: '$user.profilePicture',
-                        isFollowing: 1
+                        isFollowing: 1,
+                        active: '$user.active',
+                        last_active: '$user.last_active'
                     }
                 }
             ]);

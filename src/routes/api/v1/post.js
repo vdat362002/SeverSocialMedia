@@ -139,11 +139,13 @@ router.get(
 router.post(
     '/v1/like/post/:post_id',
     isAuthenticated,
-    validateObjectID('post_id'),
+    // validateObjectID('post_id'),
     async (req, res, next) => {
         try {
+            // console.log(123)
             const { post_id } = req.params;
-
+            const {kind_react }= req.body
+            console.log("kind_react", kind_react)
             const post = await Post.findById(post_id);
 
             if (!post) return next(ErrorHandler(400, 'Post not found.'));
@@ -161,7 +163,8 @@ router.post(
                 const like = new Like({
                     type: 'Post',
                     target: post._id,
-                    user: req.user._id
+                    user: req.user._id,
+                    kind_react: kind_react
                 });
 
                 await like.save();
@@ -173,6 +176,7 @@ router.post(
                     const targetUserID = Types.ObjectId(post._author_id);
                     const newNotif = {
                         type: ENotificationType.like,
+                        react: kind_react,
                         initiator: req.user._id,
                         target: targetUserID,
                         link: `/post/${post_id}`,
