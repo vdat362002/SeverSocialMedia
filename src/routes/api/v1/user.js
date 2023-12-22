@@ -65,9 +65,7 @@ router.get(
                         followingCount: { $size: '$following' },
                         followersCount: { $size: '$followers' },
                         isFollowing: 1,
-                        isOwnProfile: 1,
-                        active: 1,
-                        last_active: 1
+                        isOwnProfile: 1
                     }
                 },
             ]);

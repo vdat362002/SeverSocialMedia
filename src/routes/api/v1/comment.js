@@ -186,14 +186,14 @@ router.get('/v1/comment/:post_id', isAuthenticated, validateObjectID('post_id'),
         ]);
 
         if (agg.length === 0 && offset < 1) {
-            res.status(200).send(makeResponseJson([]));
+            return next(ErrorHandler(404, 'No comments found.'));
         }
 
         if (agg.length === 0 && offset >= 1) {
             return next(ErrorHandler(404, 'No more comments.'));
         }
 
-        return res.status(200).send(makeResponseJson(agg));
+        res.status(200).send(makeResponseJson(agg));
     } catch (e) {
         console.log(e);
         next(e);

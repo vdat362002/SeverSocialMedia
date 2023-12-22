@@ -42,7 +42,6 @@ export default function (app, server) {
         });
 
         socket.on("disconnect", () => {
-            io.emit('userStatus', { userId: socket.id, status: 'offline' });
             console.log('Client disconnected');
         });
     });
