@@ -37,10 +37,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
-  cors({
-    credentials: true,
-    origin: [process.env.CLIENT_URL, process.env.MESSENGER_URL],
-  })
+  cors(config.cors)
 );
 app.set("trust proxy", 1);
 app.use(logger("dev"));
