@@ -39,7 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     credentials: true,
-    origin: ["https://127.0.0.1:3000", "https://localhost:3000", "https://127.0.0.1:3200", "https://localhost:3200"],
+    origin: [process.env.CLIENT_URL, process.env.MESSENGER_URL],
   })
 );
 app.set("trust proxy", 1);
