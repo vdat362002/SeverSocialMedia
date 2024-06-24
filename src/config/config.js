@@ -21,6 +21,8 @@ if (env === 'dev') {
   dotenvConfig({
     path: path.join(__dirname, '../../.env')
   });
+} else {
+  dotenvConfig();
 }
 // console.log(process.env.NODE_ENV)
 
