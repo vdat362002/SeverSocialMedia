@@ -1,4 +1,5 @@
 import cors from "cors";
+import 'dotenv/config'
 import csurf from "csurf";
 import createDebug from "debug";
 import express from "express";
@@ -36,14 +37,12 @@ app.disable("x-powered-by");
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors(config.cors)
-);
+app.use(cors(config.cors));
 app.set("trust proxy", 1);
 app.use(logger("dev"));
 app.use(helmet());
 app.use(hpp());
-
+console.log(config.cors)
 app.use(session(config.session));
 app.use(passport.initialize());
 app.use(passport.session());
