@@ -28,7 +28,8 @@ var options = {
   key: fs.readFileSync("./.cert/cert.key"),
   cert: fs.readFileSync("./.cert/cert.crt"),
 };
-const server = https.createServer(options, app);
+// const server = https.createServer(options, app);
+const server = http.createServer(app);  
 initializeDB();
 initializeSocket(app, server);
 initializePassport(passport);
