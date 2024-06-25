@@ -26,8 +26,6 @@ if (env === 'dev') {
 }
 // console.log(process.env.NODE_ENV)
 
-const whiteLists = [process.env.CLIENT_URL, process.env.MESSENGER_URL]
-
 export default {
   server: {
     env,
@@ -54,14 +52,8 @@ export default {
     })
   },
   cors: {
-    origin: function (origin, callback) {
-      if (whiteLists.indexOf(origin) !== -1) {
-        callback(null, true)
-      } else {
-        callback(new Error('Not allowed by CORS'))
-      }
-    },
-    credentials: true
+    origin: [process.env.CLIENT_URL, process.env.MESSENGER_URL],
+    credentials: true,
   },
   gCloudStorage: {
     projectId: process.env.FIREBASE_PROJECT_ID,
