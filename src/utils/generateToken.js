@@ -16,6 +16,8 @@ export function generateRefreshToken(payload, res) {
 
   res.cookie('inspace_rfToken', token, {
     httpOnly: true,
+    secure: true,
+    sameSite: 'none',
     maxAge: 30 * 24 * 60 * 60 * 1000,  // 30 days
     path: '/'
   });
