@@ -104,7 +104,8 @@ router.get('/v1/comment/:post_id', isAuthenticated, validateObjectID('post_id'),
                         username: '$author.username',
                         email: '$author.email',
                         profilePicture: '$author.profilePicture',
-                        id: '$author._id'
+                        id: '$author._id',
+                        fullname: 1
                     },
                     depth: '$depth',
                     parent: '$parent',
