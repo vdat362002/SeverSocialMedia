@@ -7,7 +7,8 @@ const sessionizeUser = (user) => ({
     fullname: user.fullname,
     firstname: user.firstname,
     lastname: user.lastname,
-    profilePicture: user.profilePicture
+    profilePicture: user.profilePicture,
+    background: user.background,
 })
 
 const makeResponseJson = (data, success = true) => {

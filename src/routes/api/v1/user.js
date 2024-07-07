@@ -125,11 +125,11 @@ router.post(
             const file = req.file;
 
             if (!file) return next(ErrorHandler(400, 'File not provided.'));
-            if (!['picture', 'cover'].includes(field)) return next(ErrorHandler(400, `Unexpected field ${field}`));
+            if (!['picture', 'cover', 'background'].includes(field)) return next(ErrorHandler(400, `Unexpected field ${field}`));
 
 
             const image = await uploadImageToStorage(file, `${req.user.username}/profile`);
-            const fieldToUpdate = field === 'picture' ? 'profilePicture' : 'coverPhoto';
+            const fieldToUpdate = field === 'picture' ? 'profilePicture' : 'background'? 'background': 'coverPhoto';
 
             await User.findByIdAndUpdate((req.user)._id, {
                 $set: {
