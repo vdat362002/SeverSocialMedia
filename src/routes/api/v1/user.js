@@ -129,7 +129,7 @@ router.post(
 
 
             const image = await uploadImageToStorage(file, `${req.user.username}/profile`);
-            const fieldToUpdate = field === 'picture' ? 'profilePicture' : 'background'? 'background': 'coverPhoto';
+            const fieldToUpdate = field === 'picture' ? 'profilePicture' : field === 'background' ? 'background': 'coverPhoto';
 
             await User.findByIdAndUpdate((req.user)._id, {
                 $set: {
