@@ -17,3 +17,17 @@ export async function predictText(text) {
     console.error("Error:", error);
   }
 }
+export async function detectViolence(photo) {
+  try {
+    const formData = new FormData();
+    formData.append("url", photo.url)
+    const response = await fetch(`${process.env.AI_URL}/detect-violence`, {
+      method: "POST",
+      body: formData,
+    });
+    const result = await response.json();
+    return { ...photo, isViolence: Array.from(result.results?.predictions).some(pre => pre.class_id === 1) }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}

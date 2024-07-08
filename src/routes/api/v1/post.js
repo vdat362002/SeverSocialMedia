@@ -1,4 +1,4 @@
-import { predictText } from "../../../AI/ai_api.js";
+import { detectViolence, predictText } from "../../../AI/ai_api.js";
 import { LIKES_LIMIT, POST_LIMIT } from "../../../constants/constants.js";
 import { filterWords, makeResponseJson } from "../../../helpers/utils.js";
 import {
@@ -38,16 +38,10 @@ router.post(
   async (req, res, next) => {
     try {
       const { description, privacy, type_post } = req.body;
-
-      let photos = [];
-      if (req.files) {
-        const photosToSave = req.files.map((file) =>
-          uploadImageToStorage(file, `${req.user.username}/posts`)
-        );
-        photos = await Promise.all(photosToSave);
-
-        console.log(photos);
-      }
+      let photos = req.files ? await Promise.all(req.files.map(async (file) => {
+        const photo = await uploadImageToStorage(file, `${req.user.username}/posts`);
+        return await detectViolence(photo);
+      })) : [];
       filterWords.addWords(...(await predictText(description)));
       const post = new Post({
         _author_id: req.user._id,
