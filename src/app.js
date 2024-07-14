@@ -51,7 +51,7 @@ app.use(passport.session());
 app.use("/api", routers());
 
 app.get('/', (req, res) => {
-  res.render('Hello World');
+  res.json({msg:"Hello world!"});
 });
 
 app.use((req, res, next) => {
