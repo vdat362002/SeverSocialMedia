@@ -57,6 +57,10 @@ app.use((req, res, next) => {
 app.use(csurf());
 app.use(errorHandler);
 
+app.get('/', (req, res) => {
+  res.render('Hello World');
+});
+
 server.on("error", (error) => {
   if (error.syscall !== "listen") {
     throw error;
