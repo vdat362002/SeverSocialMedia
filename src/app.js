@@ -50,16 +50,16 @@ app.use(passport.session());
 // app.use('/api', routers);
 app.use("/api", routers());
 
+app.get('/', (req, res) => {
+  res.render('Hello World');
+});
+
 app.use((req, res, next) => {
   next(createError(404));
 });
 
 app.use(csurf());
 app.use(errorHandler);
-
-app.get('/', (req, res) => {
-  res.render('Hello World');
-});
 
 server.on("error", (error) => {
   if (error.syscall !== "listen") {
